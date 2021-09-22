@@ -1,0 +1,84 @@
+﻿@model MovieWebSite.Models.Website
+@{
+    ViewData["Title"] = "TvAdd";
+    Layout = "~/Views/Shared/OperationLayout.cshtml";
+}
+
+
+<h1>Film-Dizi Ekleme Sayfası</h1>
+
+<br />
+
+@using (Html.BeginForm("TvAdd", "Website", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.Label("Eklenecek Kategori")
+        @Html.DropDownListFor(x => x.FilterId, (List<SelectListItem>)ViewBag.filterValue, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Adı")
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Adı" })
+        @Html.ValidationMessageFor(x => x.Name, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Vizyona Giriş Tarihi")
+        @Html.TextBoxFor(x => x.ReleaseYear, new { @class = "form-control", placeholder = "Vizyona Giriş Tarihi" })
+        @Html.ValidationMessageFor(x => x.ReleaseYear, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Konusu")
+        @Html.TextBoxFor(x => x.Description, new { @class = "form-control", placeholder = "Konusu" })
+        @Html.ValidationMessageFor(x => x.Description, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Imdb puanı")
+        @Html.TextBoxFor(x => x.Rating, new { @class = "form-control", placeholder = "Imdb Puanı" })
+        @Html.ValidationMessageFor(x => x.Rating, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Afişi")
+        @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control", placeholder = "Afişi" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Kategorisi")
+        @Html.DropDownListFor(x => x.GenresId, (List<SelectListItem>)ViewBag.genresValue, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Ülkesi")
+        @Html.DropDownListFor(x => x.CountryId, (List<SelectListItem>)ViewBag.countryValue, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("İzleme Seçeneği")
+        @Html.DropDownListFor(x => x.ChooseId, (List<SelectListItem>)ViewBag.chooseValue, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("İzleme Linki")
+        @Html.TextBoxFor(x => x.Link, new { @class = "form-control", placeholder = "Dizi Linki" })
+    </div>
+    <div class="form-group">
+        @Html.Label("İzleme Süresi")
+        @Html.TextBoxFor(x => x.WatchTime, new { @class = "form-control", placeholder = "İzleme Süresi" })
+        @Html.ValidationMessageFor(x => x.WatchTime, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Yönetmen")
+        @Html.TextBoxFor(x => x.Director, new { @class = "form-control", placeholder = "Yönetmen" })
+        @Html.ValidationMessageFor(x => x.Director, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Oyuncular")
+        @Html.TextBoxFor(x => x.Actors, new { @class = "form-control", placeholder = "Oyuncular" })
+        @Html.ValidationMessageFor(x => x.Actors, null, new { @class = "text-danger" })
+    </div>
+
+    <button class="btn btn-xs btn-primary" type="submit">Kaydet</button>
+    <br />
+    <br />
+
+}
+
+

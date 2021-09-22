@@ -1,0 +1,57 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
+@model IPagedList<MovieWebSite.Models.Website>
+@{
+    ViewData["Title"] = "TvShow";
+    Layout = "~/Views/Shared/OperationLayout.cshtml";
+}
+<h2>Dizi Yönetici Paneli</h2>
+<br />
+@using (Html.BeginForm("TvShow", "Website", FormMethod.Get))
+{
+    <p>
+        Dizi Arama : @Html.TextBox("searchTv")
+        <input type="submit" value="Ara" />
+    </p>
+}
+<table border="1">
+    <tr>
+        <th width="75">Dizi Adı</th>
+        <th width="75">Vizyona Giriş Tarihi</th>
+        <th width="75">Dizi Türü</th>
+        <th width="500">Dizi Konusu</th>
+        <th width="75">İzleme Seçeneği</th>
+        <th width="75">Imdb Puanı</th>
+        <th width="75">Ülkesi</th>
+        <th width="75">Yönetmen</th>
+        <th width="100">Oyuncular</th>
+        <th width="75">İzleme Süresi</th>
+        <th width="75">Sil</th>
+        <th width="75">Güncelle</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td width="75">@x.Name </td>
+            <td width="75">@x.ReleaseYear</td>
+            <td width="75">@x.Genres.Name</td>
+            <td width="500">@x.Description</td>
+            <td width="75">@x.Choose.Name </td>
+            <td width="75">@x.Rating </td>
+            <td width="75">@x.Country.Name </td>
+            <td width="75">@x.Director</td>
+            <td width="100">@x.Actors </td>
+            <td width="75">@x.WatchTime </td>
+            <td><a href="/Website/TvDelete/@x.Id" type="button" onclick="return confirm('@x.Name dizisini silmek istediğinize emin misiniz?')" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Website/TvGetInfo/@x.Id" class="btn btn-primary">Güncelle</a></td>
+        </tr>
+    }
+
+</table>
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("TvShow", new { page }))
+
+<a href="/Website/TvAdd" class="btn btn-success">Ekle</a>
+<br />
+<br />

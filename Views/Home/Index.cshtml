@@ -1,0 +1,248 @@
+﻿@model List<MovieWebSite.Models.Website>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<div id="slidey" style="display: none;">
+    <ul>
+        @foreach (var item in Model.Where(x=>x.FilterId==1).Take(5))
+        {
+            <li><img src="@item.ImageUrl" alt=" "><p class='title'>@item.Name</p><p class='description'>@item.Description</p></li>
+        }
+    </ul>
+</div>
+<script src="~/web/js/jquery.slidey.js"></script>
+<script src="~/web/js/jquery.dotdotdot.min.js"></script>
+<script type="text/javascript">
+    $("#slidey").slidey({
+        interval: 8000,
+        listCount: 5,
+        autoplay: false,
+        showList: true
+    });
+    $(".slidey-list-description").dotdotdot();
+</script>
+<link href="~/web/css/owl.carousel.css" rel="stylesheet" type="text/css" media="all">
+<script src="~/web/js/owl.carousel.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#owl-demo").owlCarousel({
+
+            autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+            items: 5,
+            itemsDesktop: [640, 4],
+            itemsDesktopSmall: [414, 3]
+        });
+    });
+</script>
+
+
+
+
+
+<div class="banner-bottom">
+    <div class="container">
+        <div class="w3_agile_banner_bottom_grid">
+            <div id="owl-demo" class="owl-carousel owl-theme">
+                @foreach (var item in Model.Where(x=>x.FilterId==1).Skip(5).Take(6))
+                {
+                    <div class="item">
+                        <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+                            <a href="/Website/Details/@item.Id" class="hvr-shutter-out-horizontal">
+                                <img src="@item.ImageUrl" title="album-name" class="img-responsive" alt=" " />
+                                <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                            </a>
+                            <div class="mid-1 agileits_w3layouts_mid_1_home">
+                                <div class="w3l-movie-text">
+                                    <h6><a href="/Website/Details/@item.Id">@item.Name</a></h6>
+                                </div>
+                                <div class="mid-2 agile_mid_2_home">
+                                    <p>@item.ReleaseYear</p>
+                                    <div class="block-stars">
+                                        <ul class="w3l-ratings">
+                                            <li><a href="#"><i class="fa fa-star" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star-half-o" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="ribben" style="background-color:#6F1E51">
+                                <p>NEW</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="general">
+    <h4 class="latest-text w3_latest_text" >Öne Çıkanlar</h4>
+    <div class="container">
+        <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+            <ul id="myTab" class="nav nav-tabs" role="tablist" style=" color: #6F1E51" >
+                <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Popüler</a></li>
+                <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Vizyondakiler</a></li>
+                <li role="presentation"><a href="#rating" id="rating-tab" role="tab" data-toggle="tab" aria-controls="rating" aria-expanded="true">Imdb puanı Yüksek</a></li>
+                <li role="presentation"><a href="#imdb" role="tab" id="imdb-tab" data-toggle="tab" aria-controls="imdb" aria-expanded="false">Son Eklenenler</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+                    <div class="w3_agile_featured_movies">
+                        <div class="row">
+                            @foreach (var item in Model.Where(x => x.FilterId == 1).Skip(11).Take(7))
+                            {
+                                <div class="col-md-4 w3l-movie-gride-agile">
+                                    <a href="/Website/Details/@item.Id" class="hvr-shutter-out-horizontal">
+                                        <img src="@item.ImageUrl" title="album-name" class="img-responsive" alt=" " />
+                                        <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                    </a>
+                                    <div class="mid-1 agileits_w3layouts_mid_1_home">
+                                        <div class="w3l-movie-text">
+                                            <h6><a href="/Website/Details/@item.Id">@item.Name</a></h6>
+                                        </div>
+                                        <div class="mid-2 agile_mid_2_home">
+                                            <p>@item.ReleaseYear</p>
+                                            <div class="block-stars">
+                                                <ul class="w3l-ratings">
+                                                    <li><a href="#"><i class="fa fa-star" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star-half-o" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="clearfix"> </div>
+
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+                    <div class="row">
+                        @foreach (var item in Model.Where(x => x.FilterId == 1).Skip(18).Take(5))
+                        {
+                            <div class="col-md-4 w3l-movie-gride-agile">
+
+
+                                <a href="/Website/Details/@item.Id" class="hvr-shutter-out-horizontal">
+                                    <img src="@item.ImageUrl" title="album-name" class="img-responsive" alt=" " />
+                                    <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                </a>
+                                <div class="mid-1 agileits_w3layouts_mid_1_home">
+                                    <div class="w3l-movie-text">
+                                        <h6><a href="/Website/Details/@item.Id">@item.Name</a></h6>
+                                    </div>
+                                    <div class="mid-2 agile_mid_2_home">
+                                        <p>@item.ReleaseYear</p>
+                                        <div class="block-stars">
+                                            <ul class="w3l-ratings">
+                                                <li><a href="#"><i class="fa fa-star" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star-half-o" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star-o" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star-o" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star-o" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="clearfix"> </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="rating" aria-labelledby="rating-tab">
+                    <div class="row">
+                        @foreach (var item in Model.Where(x => x.FilterId == 1).Skip(23).Take(4))
+                        {
+                            <div class="col-md-4 w3l-movie-gride-agile">
+
+                                <a href="/Website/Details/@item.Id" class="hvr-shutter-out-horizontal">
+                                    <img src="@item.ImageUrl" title="album-name" class="img-responsive" alt=" " />
+                                    <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                </a>
+                                <div class="mid-1 agileits_w3layouts_mid_1_home">
+                                    <div class="w3l-movie-text">
+                                        <h6><a href="/Website/Details/@item.Id">@item.Name</a></h6>
+                                    </div>
+                                    <div class="mid-2 agile_mid_2_home">
+                                        <p>@item.ReleaseYear</p>
+                                        <div class="block-stars">
+                                            <ul class="w3l-ratings">
+                                                <li><a href="#"><i class="fa fa-star" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star-half-o" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star-o" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="clearfix"> </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="imdb" aria-labelledby="imdb-tab">
+                    <div class="row">
+                        @foreach (var item in Model.Skip(27).Take(2))
+                        {
+                            <div class="col-md-4 w3l-movie-gride-agile">
+                                <a href="/Website/Details/@item.Id" class="hvr-shutter-out-horizontal">
+                                    <img src="@item.ImageUrl" title="album-name" class="img-responsive" alt=" " />
+                                    <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                </a>
+                                <div class="mid-1 agileits_w3layouts_mid_1_home">
+                                    <div class="w3l-movie-text">
+                                        <h6><a href="/Website/Details/@item.Id">@item.Name</a></h6>
+                                    </div>
+                                    <div class="mid-2 agile_mid_2_home">
+                                        <p>@item.ReleaseYear</p>
+                                        <div class="block-stars">
+                                            <ul class="w3l-ratings">
+                                                <li><a href="#"><i class="fa fa-star" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star-half-o" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star-o" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star-o" style="color:#6F1E51" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-grid.css">
+
+
+

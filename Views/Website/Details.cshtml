@@ -1,0 +1,64 @@
+﻿@model List<MovieWebSite.Models.Website>
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/NoFooterLayout.cshtml";
+}
+@foreach (var x in Model)
+{
+    <div class="text-white container" style="background-color:black">
+        <br />
+        <center><h1 style="color:white; text-transform:uppercase">@x.Name</h1></center>
+        <hr />
+        <div>
+            @{
+                var link = "https://www.youtube.com/embed/";
+                var model = x.Link;
+                var movielink = link + model;
+            }
+            <iframe width="100%" height="500" src="@movielink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+        <br />
+        <div class="detailbox row">
+            <div class="col-md-3 col-sm-10">
+                <img src="@x.ImageUrl" width="200px" height="350px" title=@x.Name />
+            </div>
+            <br />
+            <div class="col-md-9 col-sm-10">
+                <div class="row pr-3">
+                    <div class="col-md-7">
+                        <h4 style="color: white; text-transform: uppercase"><b>@x.Name</b></h4>
+                        <br />
+                        <br />
+                        <p class="lead" style="color:white">@x.Description</p>
+                    </div>
+                    <div class="col-md-5">
+                        <h6></h6><br />
+                        <h6 style="color:white;"><span class="text-danger">Direktör</span> : @x.Director</h6>
+                        <br />
+                        <h6 style="color:white"><span class="text-danger">Çıkış Yılı</span> : @x.ReleaseYear</h6>
+                        <br />
+                        <h6 style="color:white"><span class="text-danger">Imdb Puanı</span> : @x.Rating</h6>
+                        <br />
+                        <h6 style="color:white"><span class="text-danger">Türü</span> : @x.Genres.Name</h6>
+                        <br />
+                        <h6 style="color:white"><span class="text-danger">İzleme Seçeneği</span> : @x.Choose.Name</h6>
+                        <br />
+                        <h6 style="color:white"><span class="text-danger">Ülke</span> : @x.Country.Name</h6>
+                        <br />
+                        <h6 style="color:white"><span class="text-danger">Aktörler</span> : @x.Actors</h6>
+                        <br />
+                        <h6 style="color:white"><span class="text-danger">Süresi</span> : @x.WatchTime</h6>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+}
+
+
